@@ -1,0 +1,259 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title> DEMO APP </title>
+        <link rel="stylesheet" href="styles.css">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
+        <!-- <style>
+            h1 {text-align: center;}
+            p {text-align: center;}
+            .button {text-align: center;}
+
+            .l1 {
+                font-size: 1.1em;
+                color: #000000;
+                float: left;
+                width: 100%;
+                margin-left: 10px;
+                margin-right: 100px;
+
+
+            }
+
+            table, td {
+            text-align: center;
+         }
+
+            .l2 {
+                font-size: 1.1em;
+                color: #000000;
+                float: right;
+                padding-right: 25px;
+                padding-left: 10px;
+                width: 100%;
+            }
+
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .fixed{
+                font-size: 1.1em;
+            }
+            
+        </style> -->
+        <script src="demo.js"></script>
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">TOXICITY PREDICTION</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Problem statement</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Simulation</a>
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+          </nav>
+            
+            <br>
+            <div class="main-container">
+                <div class="voice-container">
+                    <label for="type">Select type:</label>
+                    <select name="type" id="type">
+                        <option value="voice">Voice</option>
+                        <option value="reordered">Ordering</option>
+                    </select>
+                    
+                    <form action="{{url_for('getData')}}" method="POST" class="center">
+                        <div class="form-group-container center">
+
+                            
+                            <div class="form-group">
+                                <label for="inputAddress">Active</label>
+                                <input  type="text" name="active1" class="form-control" id="active1" placeholder="Eg. John wrote the letter.">
+                              </div>
+                              <div class="form-group">
+                                <label for="inputAddress2">Passive</label>
+                                <input type="text"  name="passive1" class="form-control" id="passive1" placeholder="Eg. The letter was written by John.">
+                            </div>
+                            <div style="text-align: center;">
+                                <input class="btn btn-success" id="submit-btn"   value="Submit">
+                            </div>
+                        </div>
+                    </form> 
+
+                    <div class="toxic-group-container center">
+
+                        <p>TOXICITIES FROM PERSPECTIVE API </p>
+                        
+                        <label for="inputAddress">Active sentence toxicity: </label><span class="green-text">&nbsp;{data[0]}}</span>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar" id="active-bar" role="progressbar"  aria-valuemax="100"></div>
+                        </div>
+                        <label for="inputAddress">Passive sentence toxicity: </label><span class="green-text">&nbsp;{data[0]}}</span>
+                          <div class="progress" style="height: 10px;">
+                            <div class="progress-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
+                          </div>
+                          <label for="inputAddress">Differnce in toxicity: </label><span class="green-text">&nbsp;{data[0]}}</span>
+                          <div class="progress" style="height: 10px;">
+                            <div class="progress-bar" id="difference-bar" role="progressbar"  aria-valuemax="100"></div>
+                          </div>
+                        <!-- <table class="center">
+                        <tr>
+                            <td>
+                                <div>
+                                    <output>Active sentence toxicity</output>
+                                    <p>{{data[0]}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <output>Passive sentence toxicity</output>
+                                    <p>{{data[1]}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </table> -->
+                        <!-- <br>
+                        <table class="center">
+                            <tr>
+                                <td>
+                                    <p id="difference">DIFFERENCE IN TOXICITIES FROM PERSPECTIVE API </p>
+                                    <output id="diff_toxicities" class="fixed">Difference</output>
+                                    <p>{{data[2]}}</p>
+                                </td>
+                            </tr>
+                        
+                        </table> -->
+                        <br>
+                        <div class="text-center">
+                            <button id="fix">FIX</button>
+                        </div>
+                        <br>
+                
+                        <table class="center">
+                            <tr>
+                                <td>
+                                    <div class="l1">
+                                        <output id="fixed_active_toxicity">Fixed Active Toxicity</output>
+                                        <p>{{data[3]}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="l2">
+                                        <output id="fixed_passive_toxicity">Fixed Passive Toxicity</output>
+                                        <p>{{data[3]}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+        
+        
+                    </div>
+                </div>
+                <!-- <div class="reorder-container">
+                    <form action="{{url_for('getData')}}" method="POST" class="center">
+                        <div class="form-group-container center">
+        
+                            <div class="form-group">
+                                <label for="inputAddress">Active</label>
+                                <input  type="text" name="active1" class="form-control" id="active1" placeholder="Eg. John wrote the letter.">
+                              </div>
+                              <div class="form-group">
+                                <label for="inputAddress2">Passive</label>
+                                <input type="text"  name="passive1" class="form-control" id="passive1" placeholder="Eg. The letter was written by John.">
+                            </div>
+                            <div style="text-align: center;">
+                                <input class="btn btn-success"  href="#popup1" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form> 
+
+                    <div class="toxic-group-container center">
+
+                        <p id="toxicities">TOXICITIES FROM PERSPECTIVE API </p>
+                        <table class="center">
+                        <tr>
+                            <td>
+                                <div class="l1">
+                                    <output id="active_toxicity">Toxicity of Active Sentence</output>
+                                    <p>{{data[0]}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="l2">
+                                    <output id="passive_toxicity">Toxicity of Passive Sentence</output>
+                                    <p>{{data[1]}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </table>
+                        <br>
+                        <table class="center">
+                            <tr>
+                                <td>
+                                    <p id="difference">DIFFERENCE IN TOXICITIES FROM PERSPECTIVE API </p>
+                                    <output id="diff_toxicities" class="fixed">Difference</output>
+                                    <p>{{data[2]}}</p>
+                                </td>
+                            </tr>
+                        
+                        </table>
+                        <br>
+                        <div class="text-center">
+                            <button id="fix">FIX</button>
+                        </div>
+                        <br>
+                
+                        <table class="center">
+                            <tr>
+                                <td>
+                                    <div class="l1">
+                                        <output id="fixed_active_toxicity">Fixed Active Toxicity</output>
+                                        <p>{{data[3]}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="l2">
+                                        <output id="fixed_passive_toxicity">Fixed Passive Toxicity</output>
+                                        <p>{{data[3]}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+        
+        
+                    </div>
+                </div>
+                 -->
+            
+    
+           
+            
+            
+           
+           
+        </div>
+        
+        
+
+    </body>
+
+</html>

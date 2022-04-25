@@ -1,0 +1,95 @@
+
+body{
+  background-color: #f1f3fb !important; 
+}
+h1 {
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+.button {
+  text-align: center;
+}
+
+.l1 {
+  font-size: 1.1em;
+  color: #000000;
+  float: left;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 100px;
+}
+
+table,
+td {
+  text-align: center;
+}
+
+.l2 {
+  font-size: 1.1em;
+  color: #000000;
+  float: right;
+  padding-right: 25px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fixed {
+  font-size: 1.1em;
+}
+.main-container{
+  display: flex;
+  flex-direction: row;
+
+}
+.voice-container{
+  /* background-color: white; */
+}
+.form-group-container{
+  /* width:50%;
+  padding: 10px;  
+  height: 35%; */
+ 
+  justify-content: space-around;
+  background-color: white;
+  box-shadow: 0 10px 20px 0 rgba(#999, .25);
+  border-radius: 5px;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: row;
+}
+
+.toxic-group-container{
+  /* width:50%;
+
+  height: 50%;
+   */
+  
+  background-color: white;
+  box-shadow: 0 10px 20px 0 rgba(#999, .25);
+  border-radius: 5px;
+}
+
+.progress{
+  height: 10px;
+}
+.progress-bar{
+  background-color: #ee8c68;
+background-image: linear-gradient(315deg, #ee8c68 0%, #eb6b9d 74%);
+}
+
+.green-text{
+  color: rgb(109, 151, 109);
+}

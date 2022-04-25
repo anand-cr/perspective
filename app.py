@@ -4,6 +4,7 @@ import time
 import json
 from googleapiclient import discovery
 from urllib3 import HTTPResponse
+from types import SimpleNamespace
 
 app = Flask(__name__)
 
@@ -31,6 +32,13 @@ def getToxicScore(x):
 @app.route('/', methods =["GET", "POST"])
 def getData():
     if request.method == "POST":
+        print('hello')
+        print(request.is_json)
+        print(request)
+        print(request.data.decode('UTF-8'))
+        
+        # x = json.loads(request.data.decode('UTF-8'), object_hook=lambda d: SimpleNamespace(**d))
+        # print(x)
         activeSentence = request.form.get("active1")
         passiveSentence = request.form.get("passive1") 
         data=[round(getToxicScore(activeSentence)*100,2),round(getToxicScore(passiveSentence)*100,2)]
@@ -38,10 +46,14 @@ def getData():
         avgToxic= (data[1]+data[0])/2
         data.append(absDiff)
         data.append(round(avgToxic,2))
+        print(data)
         return render_template("demonstration.html", data=data)
     else:
         return render_template("demonstration.html", data=[])
 
 
 if __name__ == '__main__':
+    app.config['ENV'] = 'development'
+    app.config['DEBUG'] = True
+    app.config['TESTING'] = True    
     app.run(debug=True)

@@ -2,15 +2,17 @@
 
 window.onload = function() {
     // document.addEventListener('click',myFunction)
-    var element = document.getElementById('submit-btn')
+   
+  var element = document.getElementById('submit-btn')
     element.addEventListener('click',onSubmitClick)
+    
 
     var element1 = document.getElementById('type')
     element1.addEventListener('change',changeType)
 
     document.getElementById('reordered-container').style.display = 'none'
     document.getElementById('voice-container').style.display = 'block'
-    document.getElementById('toxic-group').style.display = 'none'
+    // document.getElementById('toxic-group').style.display = 'none'
 
 
 
@@ -24,7 +26,25 @@ window.onload = function() {
   };
 
   function onSubmitClick() {
+    // setTimeout(function(){
+      
+    // }, 1000);
+    // $.post('/',{'active': 'i hate you', 'passive':'you are hated by meeeeee'},
+    //         function(data) {
+    //           console.log(data);
+    //           console.log("dfdfdfg");
+    //     });
+   $.ajax({
+          type: 'POST',
+          url: '/',
+          data: '{"active": "i hate you", "passive":"you are hated by meeeeee"}', // or JSON.stringify ({name: 'jonas'}),
+          success: function(data) { alert('data: ' + data); },
+          contentType: "application/json",
+          dataType: 'json'
+      });
     
+
+
     document.getElementById('active-bar').style.width = 100+'%';
     document.getElementById('passive-bar').style.width = 70+'%';
     document.getElementById('difference-bar').style.width = 30+'%';

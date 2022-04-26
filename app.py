@@ -32,21 +32,35 @@ def getToxicScore(x):
 @app.route('/', methods =["GET", "POST"])
 def getData():
     if request.method == "POST":
-        print('hello')
-        print(request.is_json)
-        print(request)
-        print(request.data.decode('UTF-8'))
-        
+        # x = request.get_json()
+        # print(x['active'])
+        # print('hello')
+        # print(request.is_json)
+        # print(request)
+        # print(request.get_json()['a'])
+
+        # print(request.data.decode)
+        print(request.json['active'])
+        print(request.json['passive'])
+
+        # json.loads(request.data.decode('UTF-8'))
         # x = json.loads(request.data.decode('UTF-8'), object_hook=lambda d: SimpleNamespace(**d))
         # print(x)
-        activeSentence = request.form.get("active1")
-        passiveSentence = request.form.get("passive1") 
+        activeSentence = request.json['active']
+        passiveSentence = request.json['passive']
+        # activeSentence = request.form.get("active1")
+        # passiveSentence = request.form.get("passive1") 
         data=[round(getToxicScore(activeSentence)*100,2),round(getToxicScore(passiveSentence)*100,2)]
         absDiff= round(abs(data[1]-data[0]),2)
         avgToxic= (data[1]+data[0])/2
         data.append(absDiff)
         data.append(round(avgToxic,2))
+        data_dic = {'activeT': round(getToxicScore(activeSentence)*100,2),
+        'passiveT':round(getToxicScore(passiveSentence)*100,2),
+        "diff" : absDiff,
+        'avg': avgToxic}
         print(data)
+        return data_dic
         return render_template("demonstration.html", data=data)
     else:
         return render_template("demonstration.html", data=[])

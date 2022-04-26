@@ -124,3 +124,6 @@ background-image: linear-gradient(315deg, #ee8c68 0%, #eb6b9d 74%);
      text-decoration: none;
    }
   
+.hide{
+  display: none;
+}

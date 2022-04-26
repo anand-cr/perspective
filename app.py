@@ -55,10 +55,22 @@ def getData():
         avgToxic= (data[1]+data[0])/2
         data.append(absDiff)
         data.append(round(avgToxic,2))
+        minT= min(round(getToxicScore(activeSentence)*100,2),round(getToxicScore(passiveSentence)*100,2)) 
+        maxT= max(round(getToxicScore(activeSentence)*100,2),round(getToxicScore(passiveSentence)*100,2))
+        activeT=round(getToxicScore(activeSentence)*100,2)
+
+        activeLength=len(activeSentence.split())
+        passiveT =round(getToxicScore(passiveSentence)*100,2)
+        passiveLength= len(activeSentence.split())
+        weightedAvgT = ((activeT* activeLength) + (passiveT*passiveLength))/(activeLength + passiveLength )
+
         data_dic = {'activeT': round(getToxicScore(activeSentence)*100,2),
         'passiveT':round(getToxicScore(passiveSentence)*100,2),
+        'min': minT,
+        'max':maxT,
         "diff" : absDiff,
-        'avg': avgToxic}
+        'avg': avgToxic,
+        'wAvg': weightedAvgT}
         print(data)
         return data_dic
         return render_template("demonstration.html", data=data)

@@ -113,7 +113,7 @@
                     <div class="toxic-group-container center" id="toxic-group">
 
                         <p>TOXICITIES FROM PERSPECTIVE API </p>
-                        ß
+        
                         <label for="inputAddress">Active sentence toxicity: </label><span class="green-text activeT">&nbsp;{{data[0]}}</span>
                         <div class="progress" style="height: 10px;">
                             <div class="progress-bar active-bar" id="active-bar" role="progressbar"  aria-valuemax="100"></div>
@@ -122,7 +122,7 @@
                           <div class="progress" style="height: 10px;">
                             <div class="progress-bar passive-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
-                          <label for="inputAddress">Differnce in toxicity: </label><span id="differ" class="green-text differ">&nbsp;{{data[2]}}</span>
+                          <label for="inputAddress">Difference in toxicity: </label><span id="differ" class="green-text differ">&nbsp;{{data[2]}}</span>
                           <div class="progress" style="height: 10px;">
                             <div class="progress-bar difference-bar" id="difference-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
@@ -159,10 +159,22 @@
                         </div>
                         <br>
 
-                        <div class="adjusted-toxicity">
-                            <label for="inputAddress">Adjusted toxicity: </label><span class="green-text avg">&nbsp;{{data[3]}}</span>
+                        <div class="adjusted-toxicity hide">
+                            <label for="inputAddress">Average toxicity: </label><span class="green-text avg">&nbsp;{{data[3]}}</span>
                             <div class="progress" style="height: 10px;">
-                              <div class="progress-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
+                              <div class="progress-bar avg-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Minimum toxicity: </label><span class="green-text min">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar min-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Maximum toxicity: </label><span class="green-text max">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar max-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Weighted Average toxicity: </label><span class="green-text wavg">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar wavg-bar"  role="progressbar"  aria-valuemax="100"></div>
                             </div>
                         </div>
                 

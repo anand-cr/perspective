@@ -62,10 +62,10 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Problem statement</a>
+                  <li class="nav-item" id="prob-li">
+                    <a class="nav-link active" id="prob-statement" >Problem statement</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" id="sim-li">
                     <a class="nav-link" href="#">Simulation</a>
                   </li>
                  
@@ -77,7 +77,7 @@
             
             <div class="main-container center">
                <div class="select-type">
-                <label for="type">Select type:</label>
+                <label for="type">Select type: </label>
                 <select name="type" id="type" style="background-color: none;">
                     <option value="voice">Voice</option>
                     <option value="reordered">Ordering</option>
@@ -86,28 +86,23 @@
                
                 
                 <div id="voice-container">
-                    
-                    
                     <!-- <form action="{{url_for('getData')}}" method="POST" class="center"> -->
                     <form  class="center">
                         <div class="form-group-container center">
-
-                            
                             <div class="form-group">
-                                <label for="inputAddress" style="width: 70px">Active</label>
+                                <label for="inputAddress" >Active</label>
                                 <input  type="text" name="active1" class="form-control labels" id="active1" placeholder="Eg. John wrote the letter." style="width: 100%">
-                              </div>
-                              <br>
-                              <div class="form-group">
-                                <label for="inputAddress2" style="width: 70px">Passive</label>
+                            </div>
+                              
+                            <div class="form-group">
+                                <label for="inputAddress2">Passive</label>
                                 <input type="text"  name="passive1" class="form-control labels" id="passive1" placeholder="Eg. The letter was written by John." style="width: 100%">
                             </div>
                             <br>
                             <div style="text-align: center;">
-                                <input class="btn btn-success" id="submit-btn"   value="Compute">
+                                <button class="btn btn-success submit-btn" id="submit-btn-voice" type="button"  style="width: 100px;height: 40px;">Compute</button>
                             </div>
                         </div>
-
                     </form> 
 
                     <div class="toxic-group-container center" id="toxic-group">
@@ -122,37 +117,10 @@
                           <div class="progress" style="height: 10px;">
                             <div class="progress-bar passive-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
-                          <label for="inputAddress">Difference in toxicity: </label><span id="differ" class="green-text differ">&nbsp;{{data[2]}}</span>
+                          <label for="inputAddress">Differnce in toxicity: </label><span id="differ" class="green-text differ">&nbsp;{{data[2]}}</span>
                           <div class="progress" style="height: 10px;">
                             <div class="progress-bar difference-bar" id="difference-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
-                        <!-- <table class="center">
-                        <tr>
-                            <td>
-                                <div>
-                                    <output>Active sentence toxicity</output>
-                                    <p>{{data[0]}}</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <output>Passive sentence toxicity</output>
-                                    <p>{{data[1]}}</p>
-                                </div>
-                            </td>
-                        </tr>
-                        </table> -->
-                        <!-- <br>
-                        <table class="center">
-                            <tr>
-                                <td>
-                                    <p id="difference">DIFFERENCE IN TOXICITIES FROM PERSPECTIVE API </p>
-                                    <output id="diff_toxicities" class="fixed">Difference</output>
-                                    <p>{{data[2]}}</p>
-                                </td>
-                            </tr>
-                        
-                        </table> -->
                         <br>
                         <div class="text-center">
                             <button class="btn btn-success" id="fix">Adjust toxicity</button>
@@ -178,115 +146,73 @@
                             </div>
                         </div>
                 
-                        <!-- <table class="center">
-                            <tr>
-                                <td>
-                                    <div class="l1">
-                                        <output id="fixed_active_toxicity">Adjusted toxicity</output>
-                                        <p>{{data[3]}}</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="l2">
-                                        <output id="fixed_passive_toxicity">Fixed Passive Toxicity</output>
-                                        <p>{{data[3]}}</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-         -->
+                       
         
                     </div>
                 </div>
                 
                 <div id="reordered-container" >
                     
-                    <form action="{{url_for('getData')}}" method="POST" class="center">
+                    <form  class="center">
                         <div class="form-group-container center">
-
+                            <div class="form-group">
+                                <label for="inputAddress">Original sentence</label>
+                                <input  type="text" name="active1" class="form-control labels" id="active2" placeholder="Eg. You are horrible." style="width: 100%">
+                            </div>
                             
                             <div class="form-group">
-                                <label for="inputAddress" style="width: 100px">Senetence</label>
-                                <br>
-                                <input  type="text" name="active1" class="form-control" id="active1" placeholder="Eg. John wrote the letter." style="width:100%">
-                              </div>
-                              <br>  
-                              <div class="form-group">
-                                <label for="inputAddress2" style="width: 100px">Reordered sentence</label>
-                                <input type="text"  name="passive1" class="form-control" id="passive1" placeholder="Eg. The letter was written by John." style="width:100%">
+                                <label for="inputAddress2">Reordered Sentence</label>
+                                <input type="text"  name="passive1" class="form-control labels" id="passive2" placeholder="Eg. Horrible you are." style="width: 100%">
                             </div>
+                            <br>
                             <div style="text-align: center;">
-                                <input class="btn btn-success " id="submit-btn"   value="Submit">
+                                <button class="btn btn-success submit-btn" type="button" id="submit-btn-order"  style="width: 100px;height: 40px;">Compute</button>
                             </div>
                         </div>
                     </form> 
 
-                    <div class="toxic-group-container center">
+                    <div class="toxic-group-container center" id="toxic-group">
 
                         <p>TOXICITIES FROM PERSPECTIVE API </p>
-                        
-                        <label for="inputAddress">Original sentence toxicity: </label><span class="green-text">&nbsp;{{data[0]}}</span>
+        
+                        <label for="inputAddress">Original sentence toxicity: </label><span class="green-text activeT">&nbsp;{{data[0]}}</span>
                         <div class="progress" style="height: 10px;">
-                            <div class="progress-bar" id="active-bar" role="progressbar"  aria-valuemax="100"></div>
+                            <div class="progress-bar active-bar" id="active-bar" role="progressbar"  aria-valuemax="100"></div>
                         </div>
-                        <label for="inputAddress">Reordered sentence toxicity: </label><span class="green-text">&nbsp;{{data[1]}}</span>
+                        <label for="inputAddress">reordered sentence toxicity: </label><span id="passiveT" class="green-text passiveT">&nbsp;{{data[1]}}</span>
                           <div class="progress" style="height: 10px;">
-                            <div class="progress-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
+                            <div class="progress-bar passive-bar" id="passive-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
-                          <label for="inputAddress">Differnce in toxicity: </label><span class="green-text">&nbsp;{{data[2]}}</span>
+                          <label for="inputAddress">Difference in toxicity: </label><span id="differ" class="green-text differ">&nbsp;{{data[2]}}</span>
                           <div class="progress" style="height: 10px;">
-                            <div class="progress-bar" id="difference-bar" role="progressbar"  aria-valuemax="100"></div>
+                            <div class="progress-bar difference-bar" id="difference-bar" role="progressbar"  aria-valuemax="100"></div>
                           </div>
-                        <!-- <table class="center">
-                        <tr>
-                            <td>
-                                <div>
-                                    <output>Active sentence toxicity</output>
-                                    <p>{{data[0]}}</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <output>Passive sentence toxicity</output>
-                                    <p>{{data[1]}}</p>
-                                </div>
-                            </td>
-                        </tr>
-                        </table> -->
-                        <!-- <br>
-                        <table class="center">
-                            <tr>
-                                <td>
-                                    <p id="difference">DIFFERENCE IN TOXICITIES FROM PERSPECTIVE API </p>
-                                    <output id="diff_toxicities" class="fixed">Difference</output>
-                                    <p>{{data[2]}}</p>
-                                </td>
-                            </tr>
-                        
-                        </table> -->
                         <br>
                         <div class="text-center">
-                            <button class="btn btn-success" id="fix">Adjust toxicity</button>
+                            <button class="btn btn-success" id="fix-order" style="width:120px ; height: 30px;" >Adjust toxicity</button>
                         </div>
                         <br>
+
+                        <div class="adjusted-toxicity hide-order">
+                            <label for="inputAddress">Average toxicity: </label><span class="green-text avg">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar avg-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Minimum toxicity: </label><span class="green-text min">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar min-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Maximum toxicity: </label><span class="green-text max">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar max-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                            <label for="inputAddress">Weighted Average toxicity: </label><span class="green-text wavg">&nbsp;{{data[3]}}</span>
+                            <div class="progress" style="height: 10px;">
+                              <div class="progress-bar wavg-bar"  role="progressbar"  aria-valuemax="100"></div>
+                            </div>
+                        </div>
                 
-                        <table class="center">
-                            <tr>
-                                <td>
-                                    <div class="l1">
-                                        <output id="fixed_active_toxicity">Fixed Active Toxicity</output>
-                                        <p>{{data[3]}}</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="l2">
-                                        <output id="fixed_passive_toxicity">Fixed Passive Toxicity</output>
-                                        <p>{{data[3]}}</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-        
+                       
         
                     </div>
                 </div>

@@ -61,7 +61,7 @@ def getData():
 
         activeLength=len(activeSentence.split())
         passiveT =round(getToxicScore(passiveSentence)*100,2)
-        passiveLength= len(activeSentence.split())
+        passiveLength= len(passiveSentence.split())
         weightedAvgT = ((activeT* activeLength) + (passiveT*passiveLength))/(activeLength + passiveLength )
 
         data_dic = {'activeT': round(getToxicScore(activeSentence)*100,2),
